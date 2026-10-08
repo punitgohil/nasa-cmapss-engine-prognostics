@@ -3,25 +3,58 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Condition-aware Remaining Useful Life evaluation on NASA C-MAPSS FD002.">
-  <title>Condition-Aware RUL Evaluation</title>
+  <meta name="description" content="A reproducible NASA C-MAPSS benchmark comparing snapshot models, engineered history, and a Temporal CNN for Remaining Useful Life prediction.">
+  <title>NASA C-MAPSS Engine Prognostics</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="hero">
-    <div>
-      <p class="eyebrow">NASA C-MAPSS FD002 and FD004 · simulated benchmarks</p>
-      <h1>Condition-Aware RUL Evaluation</h1>
-      <p class="subtitle">Compare current-cycle models, engineered history, and a Temporal CNN, with transparent evidence and uncertainty.</p>
+  <nav class="topbar" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="NASA C-MAPSS Engine Prognostics home"><span class="brand-mark">NP</span><span>Engine Prognostics</span></a>
+    <div class="nav-links">
+      <a href="#results">Results</a>
+      <a href="#uncertainty-title">Uncertainty</a>
+      <a href="#methodology">Methodology</a>
+      <a href="https://github.com/punitgohil/nasa-cmapss-engine-prognostics" target="_blank" rel="noreferrer">View code ↗</a>
     </div>
-    <div class="scope-note">259 official test endpoints · 52 engine-level calibration endpoints · 6 inferred regimes · no deployment claims</div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-copy">
+      <div class="status-line"><span class="status-dot"></span> Reproducible benchmark · completed study</div>
+      <p class="eyebrow">NASA C-MAPSS FD002 + FD004</p>
+      <h1>How much does engine history improve <span>remaining-life prediction?</span></h1>
+      <p class="subtitle">A controlled comparison of current-cycle models, condition-aware models, engineered temporal features, and a causal Temporal CNN—evaluated on anonymous simulated turbofan data.</p>
+      <div class="hero-actions">
+        <a class="primary-action" href="#results">Explore the evidence</a>
+        <a class="secondary-action" href="https://github.com/punitgohil/nasa-cmapss-engine-prognostics" target="_blank" rel="noreferrer">Read the repository</a>
+      </div>
+    </div>
+    <aside class="hero-panel" aria-label="Study headline result">
+      <p class="panel-label">Strongest replicated result</p>
+      <div class="hero-number">3.63 <small>cycles</small></div>
+      <p>FD004 MAE improvement from engineered history over the condition-aware snapshot model.</p>
+      <div class="confidence"><span>95% bootstrap interval</span><strong>2.09 to 5.17</strong></div>
+      <p class="fine-print">Historical features led on both subsets. The TCN did not improve the replicated FD004 result.</p>
+    </aside>
   </header>
 
+  <div class="study-strip" aria-label="Study scope">
+    <div><strong>2</strong><span>NASA subsets</span></div>
+    <div><strong>4</strong><span>model strategies</span></div>
+    <div><strong>507</strong><span>official test engines</span></div>
+    <div><strong>16/16</strong><span>automated tests passed</span></div>
+  </div>
+
   <main>
-    <section aria-labelledby="complete-title">
+    <section id="results" aria-labelledby="complete-title">
       <div class="section-heading"><div><p class="section-kicker">Completed study</p><h2 id="complete-title">Does history help—and does a neural network add value?</h2></div></div>
+      <div class="executive-grid">
+        <article><span>01</span><h3>History helps</h3><p>Engineered rolling statistics and slopes outperform snapshot-only models on FD002 and the frozen FD004 replication.</p></article>
+        <article><span>02</span><h3>Conditions help modestly</h3><p>Explicit operating regimes improve aggregate snapshot MAE, but the FD002 confidence interval includes zero.</p></article>
+        <article><span>03</span><h3>Complexity is not automatically value</h3><p>The Temporal CNN is competitive on FD002 but falls behind engineered history on the held-back FD004 evaluation.</p></article>
+      </div>
       <div id="complete-results" class="table-wrap"></div>
-      <p>Lower MAE is better. Phase 2 and FD004 give every training engine equal total weight. FD002 Phase 2 was designed after earlier test results were reviewed; FD004 methods were fixed before its test labels were opened.</p>
+      <p class="table-note">Lower MAE is better. Phase 2 and FD004 give every training engine equal total weight. FD002 Phase 2 was designed after earlier test results were reviewed; FD004 methods were fixed before its test labels were opened.</p>
       <div id="complete-finding" class="finding"></div>
     </section>
     <section aria-labelledby="overview-title">
@@ -87,9 +120,20 @@
       <h2 id="finding-title">Why is the improvement modest?</h2>
       <div id="finding-copy"></div>
     </section>
+
+    <section id="methodology" aria-labelledby="methodology-title">
+      <div class="section-heading"><div><p class="section-kicker">06 · Methodology</p><h2 id="methodology-title">Four methods, one controlled comparison</h2></div></div>
+      <div class="method-grid">
+        <article><div class="method-index">01</div><h3>Global snapshot</h3><p>One nonlinear model uses the current cycle's settings and sensor values.</p></article>
+        <article><div class="method-index">02</div><h3>Condition-aware snapshot</h3><p>Six regimes inferred from the three operating settings are supplied explicitly.</p></article>
+        <article class="recommended"><div class="method-index">03</div><h3>Engineered history</h3><p>Past-only rolling means, standard deviations, and slopes summarize degradation history.</p><span class="method-badge">Best replicated MAE</span></article>
+        <article><div class="method-index">04</div><h3>Temporal CNN</h3><p>A small causal dilated network learns directly from 30-cycle sensor sequences.</p></article>
+      </div>
+      <div class="evidence-note"><strong>Evidence boundary</strong><p>This is an independent portfolio analysis using NASA's simulated C-MAPSS benchmark. It is not affiliated with NASA and does not claim performance on real equipment. Sensors and operating settings remain anonymous.</p></div>
+    </section>
   </main>
 
-  <footer>Evidence is limited to two subsets of the same NASA simulator family. Sensor and setting columns remain anonymous. Temporal methods were evaluated for point prediction; interval results below apply to Phase 1 only.</footer>
+  <footer><div><strong>NASA C-MAPSS Engine Prognostics</strong><span>Independent, reproducible portfolio study.</span></div><p>Evidence is limited to two subsets of the same NASA simulator family. Temporal methods were evaluated for point prediction; interval results apply to Phase 1 only.</p></footer>
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>

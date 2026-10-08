@@ -32,6 +32,9 @@ server, API key, or cloud account. It shows the complete experiment comparison
 and Phase 1 prediction inspection, regime diagnostics, and interval evaluation.
 Temporal methods currently report point predictions only.
 
+Live portfolio dashboard:
+[punitgohil.github.io/nasa-cmapss-engine-prognostics](https://punitgohil.github.io/nasa-cmapss-engine-prognostics/)
+
 ## Methods
 
 1. Global: current cycle, three operational settings, and 21 anonymous sensors.

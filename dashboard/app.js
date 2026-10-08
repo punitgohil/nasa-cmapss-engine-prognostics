@@ -234,7 +234,11 @@
       ['FD002 Phase 2', 'Temporal CNN', ext.tcn.official_test_exploratory.temporal_cnn],
       ...Object.entries(ext.fd004.official_test.arms).map(([arm, metrics]) => ['FD004 replication', {global:'Global snapshot',condition_aware:'Condition-aware snapshot',engineered_history:'Engineered history',temporal_cnn:'Temporal CNN'}[arm], metrics])
     ];
-    document.getElementById('complete-results').innerHTML = '<table><thead><tr><th>Experiment</th><th>Method</th><th>Test engines</th><th>MAE (cycles)</th><th>RMSE (cycles)</th></tr></thead><tbody>' + rows.map(([experiment, method, metrics]) => `<tr><td>${experiment}</td><td>${method}</td><td>${metrics.n}</td><td>${metrics.mae.toFixed(2)}</td><td>${metrics.rmse.toFixed(2)}</td></tr>`).join('') + '</tbody></table>';
+    const bestByExperiment = Object.fromEntries([...new Set(rows.map(row => row[0]))].map(experiment => {
+      const candidates = rows.filter(row => row[0] === experiment);
+      return [experiment, Math.min(...candidates.map(row => row[2].mae))];
+    }));
+    document.getElementById('complete-results').innerHTML = '<table><thead><tr><th>Experiment</th><th>Method</th><th>Test engines</th><th>MAE (cycles)</th><th>RMSE (cycles)</th></tr></thead><tbody>' + rows.map(([experiment, method, metrics]) => `<tr class="${metrics.mae === bestByExperiment[experiment] ? 'best-row' : ''}"><td>${experiment}</td><td>${method}</td><td>${metrics.n}</td><td>${metrics.mae.toFixed(2)}</td><td>${metrics.rmse.toFixed(2)}</td></tr>`).join('') + '</tbody></table>';
     const comparison = ext.fd004.official_test.paired_comparisons.engineered_history_over_condition_aware;
     document.getElementById('complete-finding').textContent = `Engineered history is the strongest MAE method on both test subsets. On FD004 it improves MAE by ${comparison.mae_improvement.toFixed(2)} cycles over condition-aware snapshots (paired bootstrap 95% interval ${comparison.bootstrap_95_interval.map(x => x.toFixed(2)).join(' to ')}). The TCN ties engineered history on FD002 and falls behind on FD004. These fixed experiments do not measure variation across training seeds or performance on real equipment.`;
     renderSummary();
