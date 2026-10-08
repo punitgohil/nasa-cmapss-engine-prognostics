@@ -1,0 +1,19 @@
+# Raw and generated data
+data/raw/
+data/processed/
+
+# Local environments and databases
+.venv/
+*.db
+*.sqlite
+
+# Python build artifacts
+__pycache__/
+*.py[cod]
+
+# Editor and operating-system files
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+.pytest_cache/

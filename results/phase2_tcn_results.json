@@ -1,0 +1,213 @@
+{
+  "status": "Exploratory Phase 2 analysis. Architecture and training protocol were locked before TCN validation and official-test results were inspected.",
+  "architecture": {
+    "sequence_length": 30,
+    "input_feature_channels": 52,
+    "observation_mask_channels": 1,
+    "hidden_channels": 32,
+    "kernel_size": 3,
+    "dilations": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "receptive_field_cycles": 31,
+    "dropout": 0.1
+  },
+  "training": {
+    "loss": "engine-balanced absolute error on standardized uncapped RUL",
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 256,
+    "maximum_epochs": 60,
+    "early_stopping_patience": 8,
+    "selected_validation_epoch": 11,
+    "validation_training_history": [
+      {
+        "epoch": 1,
+        "engine_balanced_scaled_training_mae": 0.4815647167002623,
+        "validation_mae_cycles": 30.32867235456194
+      },
+      {
+        "epoch": 2,
+        "engine_balanced_scaled_training_mae": 0.3834332568859907,
+        "validation_mae_cycles": 28.370063145955402
+      },
+      {
+        "epoch": 3,
+        "engine_balanced_scaled_training_mae": 0.3614505038072536,
+        "validation_mae_cycles": 26.75683531988235
+      },
+      {
+        "epoch": 4,
+        "engine_balanced_scaled_training_mae": 0.3502327876472506,
+        "validation_mae_cycles": 26.08992407662528
+      },
+      {
+        "epoch": 5,
+        "engine_balanced_scaled_training_mae": 0.3420579124067655,
+        "validation_mae_cycles": 26.232515407743907
+      },
+      {
+        "epoch": 6,
+        "engine_balanced_scaled_training_mae": 0.3337660925365274,
+        "validation_mae_cycles": 25.486030941917782
+      },
+      {
+        "epoch": 7,
+        "engine_balanced_scaled_training_mae": 0.33063237133171036,
+        "validation_mae_cycles": 25.256343314761207
+      },
+      {
+        "epoch": 8,
+        "engine_balanced_scaled_training_mae": 0.32404681240665095,
+        "validation_mae_cycles": 25.48565183367048
+      },
+      {
+        "epoch": 9,
+        "engine_balanced_scaled_training_mae": 0.32098730714823165,
+        "validation_mae_cycles": 25.66369496300107
+      },
+      {
+        "epoch": 10,
+        "engine_balanced_scaled_training_mae": 0.31781357208134897,
+        "validation_mae_cycles": 26.25604505993071
+      },
+      {
+        "epoch": 11,
+        "engine_balanced_scaled_training_mae": 0.31470796085331154,
+        "validation_mae_cycles": 25.162307248796736
+      },
+      {
+        "epoch": 12,
+        "engine_balanced_scaled_training_mae": 0.3121578104377833,
+        "validation_mae_cycles": 26.229292188371932
+      },
+      {
+        "epoch": 13,
+        "engine_balanced_scaled_training_mae": 0.308224567056148,
+        "validation_mae_cycles": 25.659787732078915
+      },
+      {
+        "epoch": 14,
+        "engine_balanced_scaled_training_mae": 0.3027616400477568,
+        "validation_mae_cycles": 26.04124552408854
+      },
+      {
+        "epoch": 15,
+        "engine_balanced_scaled_training_mae": 0.30133237129112755,
+        "validation_mae_cycles": 26.81628307160877
+      },
+      {
+        "epoch": 16,
+        "engine_balanced_scaled_training_mae": 0.2991066648390914,
+        "validation_mae_cycles": 26.46712403070359
+      },
+      {
+        "epoch": 17,
+        "engine_balanced_scaled_training_mae": 0.2939344189225852,
+        "validation_mae_cycles": 27.97837006705148
+      },
+      {
+        "epoch": 18,
+        "engine_balanced_scaled_training_mae": 0.2910577121465248,
+        "validation_mae_cycles": 26.525814492361885
+      },
+      {
+        "epoch": 19,
+        "engine_balanced_scaled_training_mae": 0.2878580703119967,
+        "validation_mae_cycles": 26.36627555120559
+      }
+    ],
+    "final_training_scaled_loss_by_epoch": [
+      0.4608706925921803,
+      0.3732867754834651,
+      0.3524667153828251,
+      0.3428758421658612,
+      0.3366561056718127,
+      0.33239885075409553,
+      0.3288262267970824,
+      0.32324160690737097,
+      0.320345003642583,
+      0.3182962144506506,
+      0.31415963910503514
+    ]
+  },
+  "splits": {
+    "method3_training_engines": 166,
+    "method3_validation_engines": 42,
+    "phase1_development_engines_for_final_fit": 208,
+    "phase1_calibration_engines_not_used": 52,
+    "official_test_engines": 259
+  },
+  "development_validation": {
+    "phase2_snapshot_reference": {
+      "feature_count": 52,
+      "n": 210,
+      "engines": 42,
+      "mae": 28.76849985877129,
+      "rmse": 40.4497986752558,
+      "mean_error": -11.25401385423446
+    },
+    "method3_engineered_history": {
+      "n": 210,
+      "engines": 42,
+      "mae": 26.152539417971813,
+      "rmse": 38.49086082428662,
+      "mean_error": -10.057138095544413
+    },
+    "temporal_cnn": {
+      "n": 210,
+      "engines": 42,
+      "mae": 25.162307248796736,
+      "rmse": 36.62675216093364,
+      "mean_error": -6.153006944202241
+    },
+    "paired_comparison_to_method3": {
+      "engines": 42,
+      "mean_mae_improvement_over_method3": 0.9902321691750758,
+      "bootstrap_repetitions": 10000,
+      "bootstrap_95_interval": [
+        -1.1432850958807383,
+        3.06372131069002
+      ],
+      "fraction_of_engines_improved": 0.6190476190476191
+    }
+  },
+  "official_test_exploratory": {
+    "phase2_snapshot_reference": {
+      "feature_count": 52,
+      "n": 259,
+      "engines": 259,
+      "mae": 19.573424517622776,
+      "rmse": 27.31596956981891,
+      "mean_error": -2.8160163499357163
+    },
+    "method3_engineered_history": {
+      "n": 259,
+      "engines": 259,
+      "mae": 17.272079680494066,
+      "rmse": 25.56300563989911,
+      "mean_error": -1.0394329280477168
+    },
+    "temporal_cnn": {
+      "n": 259,
+      "engines": 259,
+      "mae": 17.323055385162473,
+      "rmse": 25.44464834618983,
+      "mean_error": -0.3423460883063239
+    },
+    "paired_comparison_to_method3": {
+      "engines": 259,
+      "mean_mae_improvement_over_method3": -0.05097570466840707,
+      "bootstrap_repetitions": 10000,
+      "bootstrap_95_interval": [
+        -1.2466666571004932,
+        1.1661583631199617
+      ],
+      "fraction_of_engines_improved": 0.4980694980694981
+    }
+  }
+}

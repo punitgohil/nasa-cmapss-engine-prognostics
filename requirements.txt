@@ -1,0 +1,7 @@
+# Versions used to generate the documented results (Python 3.9.13).
+numpy==2.0.2
+pandas==2.3.3
+scikit-learn==1.6.1
+matplotlib==3.9.4
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.5.1+cpu

@@ -1,0 +1,236 @@
+{
+  "dataset": "NASA C-MAPSS FD004",
+  "protocol": "docs/fd004-protocol.md",
+  "splits": {
+    "development": 199,
+    "reserved": 50,
+    "fitting": 159,
+    "validation": 40
+  },
+  "selected_tcn_epoch": 11,
+  "tcn_validation_history": [
+    {
+      "epoch": 1,
+      "engine_balanced_scaled_training_mae": 0.47087537461246703,
+      "validation_mae_cycles": 31.435824642181398
+    },
+    {
+      "epoch": 2,
+      "engine_balanced_scaled_training_mae": 0.38161345227394744,
+      "validation_mae_cycles": 30.44532968521118
+    },
+    {
+      "epoch": 3,
+      "engine_balanced_scaled_training_mae": 0.36380509996144034,
+      "validation_mae_cycles": 29.170902919769286
+    },
+    {
+      "epoch": 4,
+      "engine_balanced_scaled_training_mae": 0.35230990429779124,
+      "validation_mae_cycles": 28.613327617645265
+    },
+    {
+      "epoch": 5,
+      "engine_balanced_scaled_training_mae": 0.34690103391849086,
+      "validation_mae_cycles": 27.81852560043335
+    },
+    {
+      "epoch": 6,
+      "engine_balanced_scaled_training_mae": 0.3401949117900561,
+      "validation_mae_cycles": 28.37178035736084
+    },
+    {
+      "epoch": 7,
+      "engine_balanced_scaled_training_mae": 0.3330922556294308,
+      "validation_mae_cycles": 29.211549396514894
+    },
+    {
+      "epoch": 8,
+      "engine_balanced_scaled_training_mae": 0.3280990775852435,
+      "validation_mae_cycles": 28.515622158050537
+    },
+    {
+      "epoch": 9,
+      "engine_balanced_scaled_training_mae": 0.32302287699706284,
+      "validation_mae_cycles": 28.284980335235595
+    },
+    {
+      "epoch": 10,
+      "engine_balanced_scaled_training_mae": 0.3179549812230687,
+      "validation_mae_cycles": 27.402218437194826
+    },
+    {
+      "epoch": 11,
+      "engine_balanced_scaled_training_mae": 0.3175039329028112,
+      "validation_mae_cycles": 26.94247537612915
+    },
+    {
+      "epoch": 12,
+      "engine_balanced_scaled_training_mae": 0.3133285513132802,
+      "validation_mae_cycles": 27.853678359985352
+    },
+    {
+      "epoch": 13,
+      "engine_balanced_scaled_training_mae": 0.30725668488382346,
+      "validation_mae_cycles": 27.429923515319825
+    },
+    {
+      "epoch": 14,
+      "engine_balanced_scaled_training_mae": 0.3065750597253585,
+      "validation_mae_cycles": 27.357942848205568
+    },
+    {
+      "epoch": 15,
+      "engine_balanced_scaled_training_mae": 0.3032464043606835,
+      "validation_mae_cycles": 28.504679126739504
+    },
+    {
+      "epoch": 16,
+      "engine_balanced_scaled_training_mae": 0.30025925674331294,
+      "validation_mae_cycles": 27.290732345581056
+    },
+    {
+      "epoch": 17,
+      "engine_balanced_scaled_training_mae": 0.2971725932679632,
+      "validation_mae_cycles": 30.127416458129883
+    },
+    {
+      "epoch": 18,
+      "engine_balanced_scaled_training_mae": 0.2920599612505201,
+      "validation_mae_cycles": 28.437957134246826
+    },
+    {
+      "epoch": 19,
+      "engine_balanced_scaled_training_mae": 0.29250559471798443,
+      "validation_mae_cycles": 27.736872673034668
+    }
+  ],
+  "tcn_final_training_losses": [
+    0.4537831579621691,
+    0.3777668471085691,
+    0.3597858434846407,
+    0.34740222967935336,
+    0.3377964418793013,
+    0.33196373627491566,
+    0.32714026290418036,
+    0.322651391325005,
+    0.3168326992894386,
+    0.3133480809918208,
+    0.3105534425863025
+  ],
+  "provenance": {
+    "train": "27ef6160b6a1dcb2613a88de9c239f763b223f02cdc41dc5cdedc5dc189b6218",
+    "test": "1dc675fff0624bac10786927c6715b37d1297657137400d2b1a3138d777a3ba5",
+    "rul": "196b836b85a95ac7fdbbf29c5fdf1657382eafa445644d114ffaaf50dc2975e1"
+  },
+  "validation": {
+    "arms": {
+      "condition_aware": {
+        "n": 200,
+        "engines": 40,
+        "mae": 30.694291629072417,
+        "rmse": 38.40038581521023,
+        "mean_error": 0.9305276353340378
+      },
+      "engineered_history": {
+        "n": 200,
+        "engines": 40,
+        "mae": 30.994113716200346,
+        "rmse": 40.235298621924535,
+        "mean_error": 2.28672501547405
+      },
+      "global": {
+        "n": 200,
+        "engines": 40,
+        "mae": 32.37638236600908,
+        "rmse": 40.18259765498086,
+        "mean_error": 0.6143726683975831
+      },
+      "temporal_cnn": {
+        "n": 200,
+        "engines": 40,
+        "mae": 26.94247537612915,
+        "rmse": 35.90906430030205,
+        "mean_error": 1.3841458702087401
+      }
+    },
+    "paired_comparisons": {
+      "condition_aware_over_global": {
+        "mae_improvement": 1.6820907369366633,
+        "bootstrap_95_interval": [
+          -0.13708338771336115,
+          3.4997640427658507
+        ]
+      },
+      "engineered_history_over_condition_aware": {
+        "mae_improvement": -0.29982208712792296,
+        "bootstrap_95_interval": [
+          -3.2206384436708535,
+          2.5843151177526003
+        ]
+      },
+      "temporal_cnn_over_engineered_history": {
+        "mae_improvement": 4.0516383400711895,
+        "bootstrap_95_interval": [
+          1.0921599651247291,
+          7.089626266540448
+        ]
+      }
+    }
+  },
+  "official_test": {
+    "arms": {
+      "condition_aware": {
+        "n": 248,
+        "engines": 248,
+        "mae": 21.67248964983635,
+        "rmse": 30.568695250796647,
+        "mean_error": 4.094509344286331
+      },
+      "engineered_history": {
+        "n": 248,
+        "engines": 248,
+        "mae": 18.047055034785554,
+        "rmse": 27.93194078295178,
+        "mean_error": 4.279416286836818
+      },
+      "global": {
+        "n": 248,
+        "engines": 248,
+        "mae": 22.403782018492414,
+        "rmse": 31.579722110497645,
+        "mean_error": 4.397627781890291
+      },
+      "temporal_cnn": {
+        "n": 248,
+        "engines": 248,
+        "mae": 21.690842197787376,
+        "rmse": 33.55949661608429,
+        "mean_error": 5.462560684450211
+      }
+    },
+    "paired_comparisons": {
+      "condition_aware_over_global": {
+        "mae_improvement": 0.7312923686560664,
+        "bootstrap_95_interval": [
+          -0.47899836201509616,
+          1.9095780992656364
+        ]
+      },
+      "engineered_history_over_condition_aware": {
+        "mae_improvement": 3.6254346150507923,
+        "bootstrap_95_interval": [
+          2.0930772205556476,
+          5.173113600475675
+        ]
+      },
+      "temporal_cnn_over_engineered_history": {
+        "mae_improvement": -3.6437871630018233,
+        "bootstrap_95_interval": [
+          -5.5250653286241,
+          -1.8057166183016684
+        ]
+      }
+    }
+  }
+}

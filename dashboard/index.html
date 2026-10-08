@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Condition-aware Remaining Useful Life evaluation on NASA C-MAPSS FD002.">
+  <title>Condition-Aware RUL Evaluation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">NASA C-MAPSS FD002 and FD004 · simulated benchmarks</p>
+      <h1>Condition-Aware RUL Evaluation</h1>
+      <p class="subtitle">Compare current-cycle models, engineered history, and a Temporal CNN, with transparent evidence and uncertainty.</p>
+    </div>
+    <div class="scope-note">259 official test endpoints · 52 engine-level calibration endpoints · 6 inferred regimes · no deployment claims</div>
+  </header>
+
+  <main>
+    <section aria-labelledby="complete-title">
+      <div class="section-heading"><div><p class="section-kicker">Completed study</p><h2 id="complete-title">Does history help—and does a neural network add value?</h2></div></div>
+      <div id="complete-results" class="table-wrap"></div>
+      <p>Lower MAE is better. Phase 2 and FD004 give every training engine equal total weight. FD002 Phase 2 was designed after earlier test results were reviewed; FD004 methods were fixed before its test labels were opened.</p>
+      <div id="complete-finding" class="finding"></div>
+    </section>
+    <section aria-labelledby="overview-title">
+      <div class="section-heading">
+        <div><p class="section-kicker">01 · FD002 Phase 1</p><h2 id="overview-title">Snapshot comparison and interval evaluation</h2></div>
+      </div>
+      <div id="summary-cards" class="summary-grid"></div>
+      <div class="chart-panel">
+        <div class="panel-heading"><h3>Predicted RUL versus actual RUL</h3><div class="segmented" id="scatter-arm"></div></div>
+        <svg id="scatter-chart" role="img" aria-label="Predicted versus actual RUL scatter plot"></svg>
+      </div>
+    </section>
+
+    <section aria-labelledby="failure-title">
+      <div class="section-heading"><div><p class="section-kicker">02 · Failure stage</p><h2 id="failure-title">Where condition-awareness helps</h2></div></div>
+      <div class="chart-panel">
+        <h3>Error by true-RUL range</h3>
+        <svg id="rul-band-chart" role="img" aria-label="Mean absolute error by true RUL range"></svg>
+      </div>
+    </section>
+
+    <section aria-labelledby="uncertainty-title">
+      <div class="section-heading"><div><p class="section-kicker">03 · Uncertainty</p><h2 id="uncertainty-title">Interval level, coverage, and width</h2></div></div>
+      <div class="two-column">
+        <div class="chart-panel">
+          <h3>Coverage trade-off</h3>
+          <svg id="coverage-chart" role="img" aria-label="Desired versus actual interval coverage"></svg>
+        </div>
+        <div class="chart-panel">
+          <h3>Width trade-off</h3>
+          <svg id="width-chart" role="img" aria-label="Mean interval width by desired coverage"></svg>
+        </div>
+      </div>
+      <div class="chart-panel engine-panel">
+        <div class="panel-heading">
+          <h3>Individual engine interval</h3>
+          <div class="controls">
+            <label>Engine <select id="engine-select"></select></label>
+            <label>Interval <select id="level-select"><option>80</option><option selected>90</option><option>95</option></select></label>
+          </div>
+        </div>
+        <svg id="engine-chart" role="img" aria-label="Prediction intervals for one test engine"></svg>
+      </div>
+    </section>
+
+    <section aria-labelledby="regime-title">
+      <div class="section-heading"><div><p class="section-kicker">04 · Operating context</p><h2 id="regime-title">Performance across six regimes</h2></div></div>
+      <div class="two-column regime-grid">
+        <div class="chart-panel">
+          <h3>MAE by inferred regime</h3>
+          <svg id="regime-chart" role="img" aria-label="Mean absolute error by operating regime"></svg>
+        </div>
+        <div class="chart-panel">
+          <h3>Are six regimes supported?</h3>
+          <svg id="silhouette-chart" role="img" aria-label="Silhouette score by candidate regime count"></svg>
+        </div>
+      </div>
+      <div id="regime-table" class="table-wrap"></div>
+    </section>
+
+    <section class="finding" aria-labelledby="finding-title">
+      <p class="section-kicker">05 · Interpretation</p>
+      <h2 id="finding-title">Why is the improvement modest?</h2>
+      <div id="finding-copy"></div>
+    </section>
+  </main>
+
+  <footer>Evidence is limited to two subsets of the same NASA simulator family. Sensor and setting columns remain anonymous. Temporal methods were evaluated for point prediction; interval results below apply to Phase 1 only.</footer>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

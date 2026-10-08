@@ -1,0 +1,327 @@
+{
+  "scope": "NASA C-MAPSS FD002 simulated benchmark; official test labels used only for final evaluation.",
+  "model": {
+    "family": "HistGradientBoostingRegressor",
+    "quantiles": [
+      0.025,
+      0.05,
+      0.1,
+      0.5,
+      0.9,
+      0.95,
+      0.975
+    ],
+    "nominal_interval_coverages": [
+      0.8,
+      0.9,
+      0.95
+    ],
+    "calibration_method": "split conformal adjustment using one deterministic uniformly sampled pseudo-endpoint per held-out calibration trajectory"
+  },
+  "split": {
+    "development_units": 208,
+    "calibration_units": 52,
+    "calibration_endpoint_rows": 52,
+    "calibration_endpoint_sampling": "one uniformly sampled observed cycle per calibration unit; random seed 42",
+    "calibration_endpoint_rul_summary": {
+      "minimum": 5.0,
+      "median": 91.0,
+      "maximum": 273.0
+    },
+    "official_test_units": 259
+  },
+  "arms": [
+    {
+      "arm": "global_baseline",
+      "feature_count": 25,
+      "conformal_adjustments": {
+        "80": 4.340645455623356,
+        "90": 3.744446815318602,
+        "95": 5.59563397363538
+      },
+      "overall": {
+        "n": 259,
+        "mae": 20.36164899448657,
+        "rmse": 27.9223289172358,
+        "mean_error": 0.7486657526293268
+      },
+      "intervals": {
+        "80": {
+          "nominal_coverage": 0.8,
+          "empirical_coverage": 0.8648648648648649,
+          "mean_interval_width": 80.8889744941727
+        },
+        "90": {
+          "nominal_coverage": 0.9,
+          "empirical_coverage": 0.9420849420849421,
+          "mean_interval_width": 99.35912032256621
+        },
+        "95": {
+          "nominal_coverage": 0.95,
+          "empirical_coverage": 0.972972972972973,
+          "mean_interval_width": 119.0420995631924
+        }
+      },
+      "by_regime": {
+        "0": {
+          "n": 69,
+          "mae": 16.90933188023274,
+          "rmse": 23.83730709906918,
+          "mean_error": 1.3586785417292877,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9565217391304348,
+            "mean_interval_width": 89.27458708749118
+          }
+        },
+        "1": {
+          "n": 39,
+          "mae": 22.45730808110851,
+          "rmse": 29.9389283582869,
+          "mean_error": 0.34791800145265267,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9230769230769231,
+            "mean_interval_width": 100.39265088020886
+          }
+        },
+        "2": {
+          "n": 42,
+          "mae": 21.727855397988,
+          "rmse": 27.826621621854255,
+          "mean_error": -1.0804683515175404,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9761904761904762,
+            "mean_interval_width": 112.35248682038157
+          }
+        },
+        "3": {
+          "n": 32,
+          "mae": 21.50692144435985,
+          "rmse": 29.292013231900743,
+          "mean_error": 0.45452250175533093,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.90625,
+            "mean_interval_width": 100.44952510365417
+          }
+        },
+        "4": {
+          "n": 41,
+          "mae": 22.339753726800375,
+          "rmse": 32.21802030456245,
+          "mean_error": 1.8524691797899628,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9024390243902439,
+            "mean_interval_width": 96.32508620382201
+          }
+        },
+        "5": {
+          "n": 36,
+          "mae": 19.843523859413967,
+          "rmse": 26.47356116265688,
+          "mean_error": 1.1519589675333062,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9722222222222222,
+            "mean_interval_width": 104.89540239027632
+          }
+        }
+      },
+      "by_true_rul_band": {
+        "<=25": {
+          "n": 58,
+          "mae": 5.42449531057907,
+          "rmse": 8.39924130265872,
+          "mean_error": 1.9426601574666047,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 1.0,
+            "mean_interval_width": 37.32122561702091
+          }
+        },
+        "26-50": {
+          "n": 30,
+          "mae": 10.715978743264232,
+          "rmse": 13.736026798856157,
+          "mean_error": 3.9238441346093222,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9666666666666667,
+            "mean_interval_width": 62.97006720307107
+          }
+        },
+        "51-100": {
+          "n": 79,
+          "mae": 24.85983704158532,
+          "rmse": 30.270623874082546,
+          "mean_error": 12.593979830611163,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.8987341772151899,
+            "mean_interval_width": 107.42246482332682
+          }
+        },
+        ">100": {
+          "n": 92,
+          "mae": 29.061302967122476,
+          "rmse": 36.08419870916717,
+          "mean_error": -11.210973802811182,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9347826086956522,
+            "mean_interval_width": 143.4120037024183
+          }
+        }
+      }
+    },
+    {
+      "arm": "condition_aware",
+      "feature_count": 52,
+      "conformal_adjustments": {
+        "80": 4.175951483939635,
+        "90": 3.506355320637816,
+        "95": 4.442669120104064
+      },
+      "overall": {
+        "n": 259,
+        "mae": 19.708348194171656,
+        "rmse": 27.122685214397137,
+        "mean_error": 0.8684662803854448
+      },
+      "intervals": {
+        "80": {
+          "nominal_coverage": 0.8,
+          "empirical_coverage": 0.8725868725868726,
+          "mean_interval_width": 77.72467663683858
+        },
+        "90": {
+          "nominal_coverage": 0.9,
+          "empirical_coverage": 0.9343629343629344,
+          "mean_interval_width": 94.68083433362585
+        },
+        "95": {
+          "nominal_coverage": 0.95,
+          "empirical_coverage": 0.9691119691119691,
+          "mean_interval_width": 111.20539871030851
+        }
+      },
+      "by_regime": {
+        "0": {
+          "n": 69,
+          "mae": 16.14966707104168,
+          "rmse": 22.60419492498298,
+          "mean_error": 1.0933598794999226,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9710144927536232,
+            "mean_interval_width": 84.16723073719237
+          }
+        },
+        "1": {
+          "n": 39,
+          "mae": 20.668365640604396,
+          "rmse": 27.923259983350558,
+          "mean_error": 0.25741534715585895,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9487179487179487,
+            "mean_interval_width": 93.32732649773698
+          }
+        },
+        "2": {
+          "n": 42,
+          "mae": 21.880397709197513,
+          "rmse": 27.908465895794603,
+          "mean_error": 0.76662691841028,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9047619047619048,
+            "mean_interval_width": 107.82646629129812
+          }
+        },
+        "3": {
+          "n": 32,
+          "mae": 21.368945556669594,
+          "rmse": 28.757604357347766,
+          "mean_error": 1.0924407837168897,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.90625,
+            "mean_interval_width": 93.26509675147571
+          }
+        },
+        "4": {
+          "n": 41,
+          "mae": 22.311970788812125,
+          "rmse": 32.269212550623465,
+          "mean_error": 1.0681292247818321,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.8780487804878049,
+            "mean_interval_width": 94.16529132801851
+          }
+        },
+        "5": {
+          "n": 36,
+          "mae": 18.51375362399979,
+          "rmse": 25.274150821667014,
+          "mean_error": 0.7917222924174905,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9722222222222222,
+            "mean_interval_width": 102.80721703890485
+          }
+        }
+      },
+      "by_true_rul_band": {
+        "<=25": {
+          "n": 58,
+          "mae": 6.202940807974988,
+          "rmse": 9.975037994173933,
+          "mean_error": 2.6866531176740702,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9482758620689655,
+            "mean_interval_width": 29.684683276634537
+          }
+        },
+        "26-50": {
+          "n": 30,
+          "mae": 10.769778649778978,
+          "rmse": 14.780304931275868,
+          "mean_error": 4.872900850478706,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9666666666666667,
+            "mean_interval_width": 60.208841003741284
+          }
+        },
+        "51-100": {
+          "n": 79,
+          "mae": 22.893143850216177,
+          "rmse": 28.384398450479345,
+          "mean_error": 10.836733052816015,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.8860759493670886,
+            "mean_interval_width": 103.62931357002897
+          }
+        },
+        ">100": {
+          "n": 92,
+          "mae": 28.402607519211543,
+          "rmse": 35.287286663054715,
+          "mean_error": -10.143283161870567,
+          "interval_90": {
+            "nominal_coverage": 0.9,
+            "empirical_coverage": 0.9565217391304348,
+            "mean_interval_width": 139.21351587195394
+          }
+        }
+      }
+    }
+  ]
+}

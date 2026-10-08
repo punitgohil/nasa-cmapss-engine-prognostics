@@ -1,0 +1,145 @@
+{
+  "status": "Exploratory Phase 2 analysis designed after Phase 1 official-test results were inspected.",
+  "method": {
+    "name": "Method 3: engineered trailing-history features",
+    "window_observations": 30,
+    "source_signals": "21 anonymous within-regime sensor deviations",
+    "statistics_per_signal": [
+      "mean",
+      "std",
+      "slope",
+      "window_change",
+      "recent_change"
+    ],
+    "rul_target": "uncapped remaining observed cycles",
+    "training_weighting": "equal total sample weight per engine"
+  },
+  "splits": {
+    "phase1_development_engines": 208,
+    "phase1_untouched_calibration_engines": 52,
+    "method3_training_engines": 166,
+    "method3_validation_engines": 42,
+    "validation_endpoints_per_engine": 5,
+    "official_test_engines": 259
+  },
+  "development_validation": {
+    "arms": {
+      "phase2_engineered_history": {
+        "feature_count": 158,
+        "n": 210,
+        "engines": 42,
+        "mae": 26.152539417971813,
+        "rmse": 38.49086082428662,
+        "mean_error": -10.057138095544413
+      },
+      "phase2_snapshot": {
+        "feature_count": 52,
+        "n": 210,
+        "engines": 42,
+        "mae": 28.76849985877129,
+        "rmse": 40.4497986752558,
+        "mean_error": -11.25401385423446
+      }
+    },
+    "paired_engine_bootstrap": {
+      "engines": 42,
+      "mean_mae_improvement": 2.615960440799478,
+      "bootstrap_repetitions": 10000,
+      "bootstrap_95_interval": [
+        0.9952328525411783,
+        4.262855742434084
+      ],
+      "fraction_of_engines_improved": 0.6190476190476191
+    },
+    "by_true_rul_band": [
+      {
+        "rul_band": "<=25",
+        "endpoints_per_arm": 19,
+        "snapshot_mae": 7.457189051011498,
+        "engineered_history_mae": 4.480596775199889,
+        "mae_improvement": 2.9765922758116083
+      },
+      {
+        "rul_band": "26-50",
+        "endpoints_per_arm": 28,
+        "snapshot_mae": 17.62039015480937,
+        "engineered_history_mae": 11.39503935232764,
+        "mae_improvement": 6.2253508024817314
+      },
+      {
+        "rul_band": "51-100",
+        "endpoints_per_arm": 59,
+        "snapshot_mae": 21.964329806990772,
+        "engineered_history_mae": 20.566546585631514,
+        "mae_improvement": 1.3977832213592585
+      },
+      {
+        "rul_band": ">100",
+        "endpoints_per_arm": 104,
+        "snapshot_mae": 39.52338457140033,
+        "engineered_history_mae": 37.25398642911393,
+        "mae_improvement": 2.2693981422863985
+      }
+    ]
+  },
+  "official_test_exploratory": {
+    "arms": {
+      "phase2_engineered_history": {
+        "feature_count": 158,
+        "n": 259,
+        "engines": 259,
+        "mae": 17.272079680494066,
+        "rmse": 25.56300563989911,
+        "mean_error": -1.0394329280477168
+      },
+      "phase2_snapshot": {
+        "feature_count": 52,
+        "n": 259,
+        "engines": 259,
+        "mae": 19.573424517622776,
+        "rmse": 27.31596956981891,
+        "mean_error": -2.8160163499357163
+      }
+    },
+    "paired_engine_bootstrap": {
+      "engines": 259,
+      "mean_mae_improvement": 2.301344837128712,
+      "bootstrap_repetitions": 10000,
+      "bootstrap_95_interval": [
+        0.9479500559159292,
+        3.6451425411763285
+      ],
+      "fraction_of_engines_improved": 0.5791505791505791
+    },
+    "by_true_rul_band": [
+      {
+        "rul_band": "<=25",
+        "endpoints_per_arm": 58,
+        "snapshot_mae": 5.904581302785456,
+        "engineered_history_mae": 3.1332469759364963,
+        "mae_improvement": 2.7713343268489594
+      },
+      {
+        "rul_band": "26-50",
+        "endpoints_per_arm": 30,
+        "snapshot_mae": 9.769818052175944,
+        "engineered_history_mae": 7.756473946182073,
+        "mae_improvement": 2.0133441059938715
+      },
+      {
+        "rul_band": "51-100",
+        "endpoints_per_arm": 79,
+        "snapshot_mae": 21.81230420791396,
+        "engineered_history_mae": 18.407053318607765,
+        "mae_improvement": 3.4052508893061955
+      },
+      {
+        "rul_band": ">100",
+        "endpoints_per_arm": 92,
+        "snapshot_mae": 29.465050657741973,
+        "engineered_history_mae": 28.31400958791489,
+        "mae_improvement": 1.1510410698270839
+      }
+    ]
+  }
+}
